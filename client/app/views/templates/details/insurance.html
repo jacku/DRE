@@ -1,3 +1,8 @@
+<style>
+ul {
+    list-style: none;
+}
+</style>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -7,7 +12,6 @@
         </tr>
     </thead>
     <tbody>
-        
         <tr ng-show="entryData.authorization.procedure.code">
             <td>Procedure Information:</td>
             <td>
@@ -31,11 +35,156 @@
                         </tbody>
                     </table>
                 </div>
-
-
-
             </td>
         </tr>
-        
+        <tr ng-show="entryData.policy">
+            <td>Policy:</td>
+            <td>
+                <div class="panel">
+                    <table class="table sub-table">
+                        <thead>
+                            <tr ng-show="entryData.policy.code.name">
+                                <td>Name:</td>
+                                <td>{{entryData.policy.code.name}}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Code:</td>
+                                <td>{{entryData.policy.code.code}}</td>
+                            </tr>
+                            <tr>
+                                <td>Code System:</td>
+                                <td>{{entryData.policy.code.code_system_name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr ng-show="entryData.policy.insurance.code">
+            <td>Insurance:</td>
+            <td>
+                <div class="panel">
+                    <table class="table sub-table">
+                        <thead>
+                            <tr ng-show="entryData.policy.insurance.code.name">
+                                <td>Name:</td>
+                                <td>{{entryData.policy.insurance.code.name}}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Code:</td>
+                                <td>{{entryData.policy.insurance.code.code}}</td>
+                            </tr>
+                            <tr>
+                                <td>Code System:</td>
+                                <td>{{entryData.policy.insurance.code.code_system_name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr ng-show="entryData.policy.insurance.performer">
+            <td>Performer:</td>
+            <td>
+                <div class="panel">
+                    <table class="table sub-table">
+                        <thead>
+                            <tr>
+                                <td>Code:</td>
+                                <td>
+                                    <div class="panel">
+                                        <table class="table sub-table">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name:</td>
+                                                    <td>{{entryData.policy.insurance.performer.code.name}}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Code:</td>
+                                                    <td>{{entryData.policy.insurance.performer.code.code}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Code System:</td>
+                                                    <td>{{entryData.policy.insurance.performer.code.code_system_name}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="org in entryData.policy.insurance.performer.organization">
+                                <td>Organization:</td>
+                                <td>
+                                    <div class="panel">
+                                        <table class="table sub-table">
+                                            <thead>
+                                                <tr>
+                                                    <td>Plan Name:</td>
+                                                    <td>
+                                                        <ul>
+                                                            <li ng-repeat="line in org.name">{{line}}</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="address in org.address">
+                                                    <td>Address: </td>
+                                                    <td>
+                                                        <ul>
+                                                            <li class="text-capitalize">{{address.use}}</li>
+                                                            <li ng-repeat="street in address.street_lines">{{street}}</li>
+                                                            <li>{{address.city}}, {{address.state}}, {{address.country}}</li>
+                                                            <li>{{address.zip}}</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-repeat="phone in org.phone">
+                                                    <td>Phone:</td>
+                                                    <td>
+                                                        <ul>
+                                                            <li class="text-capitalize">{{phone.type}}</li>
+                                                            <li>{{phone.number}}</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="address in entryData.policy.insurance.performer.address">
+                                <td>Address: </td>
+                                <td>
+                                    <ul>
+                                        <li class="text-capitalize">{{address.use}}</li>
+                                        <li ng-repeat="street in address.street_lines">{{street}}</li>
+                                        <li>{{address.city}}, {{address.state}}, {{address.country}}</li>
+                                        <li>{{address.zip}}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="phone in entryData.policy.insurance.performer.phone">
+                                <td>Phone:</td>
+                                <td>
+                                    <ul>
+                                        <li class="text-capitalize">{{phone.type}}</li>
+                                        <li>{{phone.number}}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
     </tbody>
 </table>
